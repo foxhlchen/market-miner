@@ -62,5 +62,5 @@ if __name__ == '__main__':
         with open(csv_folder + ticker + '.csv', 'w') as f:
             f.write(csv_str)
 
-        random_sleep = random.uniform(1, 2)
-        time.sleep(random_sleep)
+        random_time = random.uniform(1, 3)
+        time.sleep(random_time)
