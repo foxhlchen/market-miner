@@ -21,6 +21,7 @@ def tocsv(jstr):
     csv = []
 
     if q['status'] != 0:
+        print(q)
         raise ValueError
 
     hq = q['hq']
@@ -61,5 +62,5 @@ if __name__ == '__main__':
         with open(csv_folder + ticker + '.csv', 'w') as f:
             f.write(csv_str)
 
-        random_sleep = random.uniform(1, 5)
+        random_sleep = random.uniform(1, 10)
         time.sleep(random_sleep)
