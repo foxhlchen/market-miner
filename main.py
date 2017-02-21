@@ -24,7 +24,8 @@ def tocsv(jstr):
         raise ValueError(q)
 
     hq = q['hq']
-    csv.append('日期,开盘,收盘,涨跌额,涨跌幅,最低,最高,成交量(手),成交金额(万),换手率\n')
+    # ChgVol涨跌额 Chg涨幅(%) Vol成交量(手) Amt成交额(万) TurnoverRate换手率(%)
+    csv.append('Date,Open,Close,ChgVol,Chg,Low,High,Vol,Amt,TORate\n')
     for entry in hq:
         entry[4] = entry[4].replace('%', '')
         for i in range(9):
