@@ -21,8 +21,7 @@ def tocsv(jstr):
     csv = []
 
     if q['status'] != 0:
-        print(q)
-        raise ValueError
+        raise ValueError(q)
 
     hq = q['hq']
     csv.append('日期,开盘,收盘,涨跌额,涨跌幅,最低,最高,成交量(手),成交金额(万),换手率\n')
@@ -51,16 +50,20 @@ if __name__ == '__main__':
     for ticker in ticker_file:
         ticker = ticker.replace('\n', '')
         ticker = ticker.replace('\r', '')
-        ticker_list.append(ticker)
+        if len(ticker) > 0:
+            ticker_list.append(ticker)
 
     for ticker in tqdm(ticker_list):
         # print(ticker)
+        try:
+            jstr = fetch_quote(ticker, from_date, to_date)
+            csv_str = tocsv(jstr)
+            # print(csv_str)
+        except ValueError as v:
+            print(v)
 
-        jstr = fetch_quote(ticker, from_date, to_date)
-        csv_str = tocsv(jstr)
-        # print(csv_str)
         with open(csv_folder + ticker + '.csv', 'w') as f:
             f.write(csv_str)
 
-        random_time = random.uniform(1, 3)
-        time.sleep(random_time)
+            # random_time = random.uniform(1, 3)
+            # time.sleep(random_time)
